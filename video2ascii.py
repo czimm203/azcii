@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from os import system
 
-ASCII_CHARS = "#0$XC7L>=~ "
+ASCII_CHARS = "B#&@$%KL*)l1+>c;:,. "
 INDEX = range(len(ASCII_CHARS))
 ASCII_DICT = {i:a for i,a in zip(INDEX,ASCII_CHARS)}
 REDUCER = 256/len(ASCII_CHARS)
@@ -33,7 +33,7 @@ def parse_image_cv(img):
 
 def ascii_cam():
     name = 'HI, MY NAME IS: ...'
-    cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+    cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
     cv2.namedWindow(name, cv2.WINDOW_NORMAL | cv2.WINDOW_KEEPRATIO)
     while(1):
 
@@ -53,7 +53,10 @@ def ascii_cam():
         ch = parse_image_cv(squish)
 
         for line in range(len(ch)):
-            cv2.putText(bg, ch[line], (1,line*10), 3,.25, (255, 255, 255), 1, cv2.LINE_AA)
+            i = 0
+            for char in ch[line]:
+                cv2.putText(bg, char, (int(width/100*i)+5,line*10), 3,.25, (255, 255, 255), 1, cv2.LINE_AA)
+                i += 1
         #Real feed and exit stuff
         cv2.imshow('frame',grayscale)
         cv2.imshow(name,bg)
@@ -63,7 +66,7 @@ def ascii_cam():
     cv2.destroyAllWindows()
 
 def ascii_terminal_player(show_cam=False):
-    cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+    cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
     while(1):
 
         # Take each frame

@@ -4,7 +4,7 @@ import PIL.Image
 
 ASCII_CHARS = ['@','#','S','%','?','*','+',';',':',',','.']
 
-def resize_img(img,new_width=200):
+def resize_img(img,new_width=125):
     width,height = img.size
     ratio = height/width
     squash = 8/18    #squash is meant to correct the difference in aspect ratio between a pixel(square) and ascii char(rectangle)
@@ -36,7 +36,7 @@ def create_ascii_image(image_path:str,html=False,new_width=200):
 
 
 
-def cli(prnt=False,new_width=200):
+def cli(prnt=False,new_width=125):
     try:
         path = input('Enter image path:\n')
         image = PIL.Image.open(path)
